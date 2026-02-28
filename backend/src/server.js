@@ -4,6 +4,10 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+// DELETE LATER
+import { getAllHeroes } from './utils/heroApi.js';
+// DELETE LATER
+
 // Load environment variables from .env
 dotenv.config();
 
@@ -34,3 +38,6 @@ app.listen(PORT, () => {
   console.log(`Server is listening on http://localhost:${PORT}`);
   console.log(`Test it: http://localhost:${PORT}/`);
 });
+
+// DELETE LATER - TESTING
+getAllHeroes();
