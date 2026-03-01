@@ -25,7 +25,4 @@ async function getAllHeroes() {
     }
 }
 
-// Create database entries for each hero (trim the excess info) *runs 1 time*
-async function createHeroDatabase() {}
-
 export { getAllHeroes };
