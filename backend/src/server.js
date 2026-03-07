@@ -24,7 +24,7 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('✅ MongoDB Atlas connected successfully');
     //! Populate the database here...
-    initializeDatabase(); //What do I do with returned result?    
+    initializeDatabase(); //!What do I do with returned result?    
   })
   .catch((error) => {
     console.error('❌ MongoDB connection error:', error.message);
