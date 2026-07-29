@@ -10,15 +10,18 @@ const baseUrl = 'https://akabab.github.io/superhero-api/api';
 // Fetch every hero from api
 async function getAllHeroes() {
     try {
-        const heroList = await axios.get(`${baseUrl}/all.json`, {})
-        // DELETE LATER
-        console.log(heroList);
-        // DELETE LATER
+        const apiResponse = await axios.get(`${baseUrl}/all.json`)
+        console.log(apiResponse); //! DELETE LATER (TESTING)
+        
+        const heroData = apiResponse.data; // extract actual data
+
+        // Add _id field for indexing in MongoDB - Match hero ID
+        const heroList = heroData.map((hero) => ({...hero, _id: hero.id}));
         return heroList;
+
     } catch (error) {
         console.error(`Failure to fetch all heroes: ${error}`);
-        // maybe should be more extreme
-        return null;
+        return []; //! maybe should be more extreme
     }
 }
 
