@@ -45,7 +45,7 @@ async function fetchRandomHero() {
         }
 
         //! Testing log - Delete later
-        console.log(`RANDOM HERO SELECTED: ${JSON.stringify(randomHero)}`); //! Delete later - testing
+        // console.log(`RANDOM HERO SELECTED: ${JSON.stringify(randomHero)}`); //! Delete later - testing
         return randomHero;
 
     } catch (error) {
