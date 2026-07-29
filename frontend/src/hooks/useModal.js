@@ -1,23 +1,27 @@
 // Universal modal functionality logic
+import { useState } from 'react';
 
-function closeModal() {
-    // Basic closing of the modal.
+function useModal() {
+    const [activeModal, setActiveModal] = useState("");
+
+    function openModal(modalName) {
+        // Gets passed the specific modal to open from higher up.
+        setActiveModal(modalName)
+    }
+
+    function closeModal() {
+        // Set it back to nuetral state.
+    setActiveModal("");
+    }
+
+    function handleOffModalClick(event) {
+        // This prevents event bubbling. It does this by checking if the element that started the event (event.target) is the same as the element the event listener carrying this method is attached to. If so it closes the modal, if not is does nothing.
+        if (event.target === event.currentTarget) {
+            closeModal();
+        }
+    }
+
+    return { activeModal, openModal, closeModal, handleOffModalClick };
 }
 
-function handleOffModalClick() {
-    // Prevent bubbling by checking where click happenned.
-}
-
-//! isOpen goes in here too or no ???
-
-//! I think so because closeModal and handleOffModalClick are really only
-//! in charge of closing the modal if certain events fire, and they do that
-//! by setting isOpen back to null or an empty string or whatever.
-
-//! But how does it recieve or know about the close button, and the dark
-//! Overlay so it can check to see if either are clicked so it can close??
-// Answer - It doesnt, it just provides functions to the modal component
-// that it can call. 
-//! Then why not only create a close modal, and have that be called on the
-//! various clicks?
-
+export default useModal;
