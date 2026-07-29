@@ -7,9 +7,12 @@ import useModal from '../../hooks/useModal.js';
 import useAuth from '../../hooks/useAuth.js';
 
 function Layout() {
+    // For global control of logged in/out users.
+    const { isLoggedIn, currentUser, login, logout } = useAuth();
 
-    const { isLoggedIn } = useAuth();
+    // For global control of active modals.
     const { activeModal, openModal, closeModal, handleOffModalClick } = useModal();
+
     //! activeModal just keeps track of which modal is open, it gets passed
     //! down to the individual modals so they know whether to appear. OpemModal
     //! Stays higher up because the elements in charge of opening the modals
@@ -21,7 +24,7 @@ function Layout() {
 
     return (
     <>
-        <Header isLoggedIn={isLoggedIn} openModal={openModal} />
+        <Header isLoggedIn={isLoggedIn} currentUser={currentUser} openModal={openModal} />
         <Outlet /> {/* This is what displays the child routes AKA all other components */}
         <Footer />
         

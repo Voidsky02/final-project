@@ -8,18 +8,19 @@ function useAuth() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
 
-    async function login(userInfo) {
+    async function login(loginFormInput) {
         try {
             // Extract email and password from form input data.
             //! FROM DATA WOULD NOT CONTAIN THE ID FIELD
-            const { email, password, id } = userInfo;
+            const { email, password } = loginFormInput;
 
-            // Call backend login function and recieve token if successful.
+            // Call backend login function and recieve token & user data if successful - extract them from response object.
             //! AXIOS WRAPS RESPONSE - DATA IS FOUND IN response.data
-            const token = await axios.post('/login', { email: email, password: password });
+            const response = await axios.post('/login', { email: email, password: password });
+            const { user, token } = response.data;
 
             // Store basic user info in browsers local storage.
-            localStorage.setItem('user', id);
+            localStorage.setItem('user', user._id); //! Just the ID ??
 
             // Store access token in browsers local storage.
             localStorage.setItem('token', token);
@@ -27,7 +28,7 @@ function useAuth() {
             // Update isLoggedIn and currentUser.
             setIsLoggedIn(true);
 
-            setCurrentUser(id); //! Do I want this to be the name or the ID ?
+            setCurrentUser(user._id); //! Do I want this to be the name or the ID ?
 
         } catch(error) {
             console.error(error); //! Basic for now.

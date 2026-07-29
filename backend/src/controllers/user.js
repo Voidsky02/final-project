@@ -43,9 +43,6 @@ async function createUser(req, res, next) { //! I think this was just boilerplat
     }
 }
 
-//! I can create functions inside the user schema itself, should i create
-//! one for generating tokens? would that be easier?
-
 async function backendLogin(req, res, next) {
     try {
         // #1 Verify form input is valid.
@@ -72,7 +69,7 @@ async function backendLogin(req, res, next) {
 
         //! #4 SEND TOKEN TO FRONTEND HOOK - JOB IS DONE.
         //! SEND CLEANED UP USER INFO (NO PASSWORD) TO FRONTEND IN ADDITION TO THE TOKEN !!!
-        return res.status(200).json({ token: accessToken });
+        return res.status(200).json({ user: user, token: accessToken });
 
     } catch(error) {
         console.error(error); //! Basic for now.
