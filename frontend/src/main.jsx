@@ -6,13 +6,19 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Make sure the Header is always visible in all routes.
 // Might have to move the browser router to a different file for this.
+import Layout from "./components/Layout/Layout.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import Battle from "./components/Battle/Battle.jsx";
 
 const router = createBrowserRouter([
-  {path: '/', element: <App />},
-  {path: '/profile', element: <Profile />},
-  {path: '/battle', element: <Battle />},
+  {
+    element: <Layout />,
+    children: [
+      {path: '/', element: <App />},
+      {path: '/profile', element: <Profile />},
+      {path: '/battle', element: <Battle />},
+    ]
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

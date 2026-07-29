@@ -3,7 +3,7 @@ import "./Battle.css";
 
 function Battle() {
     return <>
-    <h2>Battle Zone</h2>
+    <h2>BATTLE ZONE</h2>
     </>
 }
 

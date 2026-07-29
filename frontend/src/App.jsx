@@ -1,14 +1,12 @@
 import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import './App.css'
-import Header from './components/header/header.jsx';
+import Header from './components/Header/Header.jsx';
 
 // Need to add "BrowserRouter" or something similar for <Link> to work
 function App() {
   return (
     <>
-      <Header></Header>
+      <h2>MAIN aka random hero</h2>
     </>
   )
 }

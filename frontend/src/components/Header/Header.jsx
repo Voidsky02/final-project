@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './header.css';
+import './Header.css';
 
 function Header() {
     // useState variables
