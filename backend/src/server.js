@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { errors } from 'celebrate';
 import { router } from './routes/index.js';
 import { initializeDatabase } from './utils/initializeDatabase.js';
 
@@ -29,6 +30,7 @@ mongoose.connect(process.env.MONGO_URI)
 
   // Custom Middleware (correct placement?)
   app.use('/', router);
+  app.use(errors()); // So Celebrate can throw the custom errors I made.
 
 // Start the server
 const PORT = process.env.PORT || 5000;

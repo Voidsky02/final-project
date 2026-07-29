@@ -1,6 +1,6 @@
 /* Connects URL Endpoints to Controllers. Ex: when GET /Signup -> run the createUser function */
 import express from 'express';
-import { celebrate, Segments } from 'celebrate';
+import { celebrate } from 'celebrate';
 import registerSchema from '../middlewares/validation.js';
 import { createUser } from '../controllers/user.js';
 
@@ -16,6 +16,6 @@ celebrate({ [Segments.BODY]: registrationSchema })
  */
 
 /*! Test route */
-userRouter.post('/signup', celebrate({ [Segments.BODY]: registerSchema }), createUser);
+userRouter.post('/signup', celebrate({ body: registerSchema }, { abortEarly: false }), createUser);
 
 export default userRouter;
