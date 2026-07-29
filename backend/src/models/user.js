@@ -1,4 +1,4 @@
-/* For User creation and Authentication */
+/* For User creation and Authentication - Defines what my data looks like and how it interacts with the database*/
 
 import mongoose from 'mongoose';
 
@@ -14,4 +14,4 @@ const userSchema = mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 /* Export the model for use */
-export { User };
+export default User;

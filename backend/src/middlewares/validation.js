@@ -14,7 +14,7 @@ const registerSchema = Joi.object({
     }),
     password: Joi.string().min(8).pattern(/(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])/).required().messages({
         'any.required': 'Password field cannot be left blank',
-        'string.pattern.base': 'Password must include at least one uppercase & lowercase letter and at least one number'
+        'string.pattern.base': 'Password must include at least one uppercase & lowercase letter and at least one number
     }),
     confirmPassword: Joi.string().valid(Joi.ref('password')).required().messages({
         'any.required': 'Confirm password field cannot be left blank',
