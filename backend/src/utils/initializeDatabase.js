@@ -1,5 +1,5 @@
 import { Hero } from '../models/hero.js';
-import { fetchAllHeroData, fetchRandomHero } from './heroApi.js';
+import { fetchAllHeroData } from './heroApi.js';
 
 // Populate database with all heroes from API
 async function createHeroEntries(heroArray) {
@@ -20,10 +20,6 @@ async function doHeroesExist() { // return true or false
 async function initializeDatabase() {
     try {
         const isDatabasePopulated  = await doHeroesExist();
-
-        //! TESTING
-        fetchRandomHero();
-        //! Testing
 
         if (isDatabasePopulated) {
             // If already populated, exit the function
