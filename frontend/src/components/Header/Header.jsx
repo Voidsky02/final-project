@@ -24,11 +24,11 @@ function Header() {
                         <Link className="header__link" to="/">Home</Link>                        
                     </li>
                     <li className="header__item">
-                        <Link className="header__link" to="/profile">Profile</Link>                        
-                    </li>
-                    <li className="header__item">
                         <Link className="header__link" to="/battle">Battle</Link>
                     </li>
+                    <li className="header__item">
+                        <Link className="header__link" to="/profile">Profile</Link>                        
+                    </li>                    
                 </ul>
             </nav>
         </header>
