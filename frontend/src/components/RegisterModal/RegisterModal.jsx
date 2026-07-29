@@ -11,15 +11,21 @@ function RegisterModal({ isOpen, closeModal, handleOffModalClick }) {
 
     const { values, handleChange, resetForm } = useForm({ username: "", email: "", password: "", confirmPassword: "" });
 
-    // handleSubmit is the only function created in the custom modal itself
+    // handleRegister is the only function created in the custom modal itself
     // because the submit logic is different depending on the modal
-    function handleSubmit(event) { //! Finish this function
-        // In previous project i just prevented default behavior,
-        // then called a custom onSignUp function in here and thats it.
-        event.preventDefault();
-        //! More ????
+    async function handleRegister(event) { //! Finish this function
+        try {
+            // In previous project i just prevented default behavior,
+            // then called a custom onSignUp function in here and thats it.
+            event.preventDefault();
+            //! More ????
         resetForm();
+        } catch (error) {
+            console.error(error) //! Make better later.
+        }
     }
+
+    //! handleRegister here, then pass to ModalWithForm's handleSubmit?
 
     return (
     <ModalWithForm
@@ -31,7 +37,7 @@ function RegisterModal({ isOpen, closeModal, handleOffModalClick }) {
         closeModal={closeModal}
         handleOffModalClick={handleOffModalClick}
         //! Below is created inside this component
-        handleSubmit={""}
+        handleSubmit={handleRegister}
     >
         {/* Form elements for creating a profile for first time
         / (Username, Email, Password, confirm password)

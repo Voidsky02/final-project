@@ -2,7 +2,7 @@
 
 async function registerUser() {
     try {
-
+        
     } catch (error) {
 
     }
