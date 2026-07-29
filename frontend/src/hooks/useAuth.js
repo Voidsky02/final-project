@@ -16,7 +16,7 @@ function useAuth() {
 
             // Call backend login function and recieve token & user data if successful - extract them from response object.
             //! AXIOS WRAPS RESPONSE - DATA IS FOUND IN response.data
-            const response = await axios.post('/login', { email: email, password: password });
+            const response = await axios.post('http://localhost:5000/login', { email: email, password: password });
             const { user, token } = response.data;
 
             // Store basic user info in browsers local storage.
@@ -30,8 +30,11 @@ function useAuth() {
 
             setCurrentUser(user); //! Do I want this to be the name or the ID ?
 
+            //! TEMP
+            console.log(`Frontend successfully logged in`);
+
         } catch(error) {
-            console.error(error); //! Basic for now.
+            console.error(`This is useAuth: ${error}`); //! Basic for now.
         }
     }
 
@@ -44,6 +47,9 @@ function useAuth() {
 
         // Clear currentUser.
         setCurrentUser(null); //! String or null ?
+
+        //! TEMP
+        console.log(`Successfully logged out`);
     }
 
     //! Store user and token in local storage. - THIS WILL GO IN LOGIN FUNC.

@@ -23,10 +23,10 @@ function ModalWithForm({
                 </h3>
                 <form className='modal__form' name={name} onSubmit={handleSubmit}>
                     {children}
+                    <button className='modal__submit-button' type='submit'>
+                        {buttonText}
+                    </button>
                 </form>
-                <button className='modal__submit-button' type='submit'>
-                    {buttonText}
-                </button>
             </div>
         </div>
     );

@@ -21,14 +21,9 @@ function LoginModal({ isOpen, closeModal, handleOffModalClick, login }) {
             // Close the modal.
             closeModal();
 
-            //! TEMP.
-            console.log('Successfully Logged In.')
-
         } catch(error) {
-            console.error(error); //! Add more later.
-
-            //! TEMP
-            console.log('Login Failed.')
+            console.error(`This is the login modal: ${error}`); //! Add more later.
+            window.alert('Login Failed'); //! TEMP
         }
     }
 

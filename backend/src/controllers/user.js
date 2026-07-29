@@ -71,12 +71,15 @@ async function backendLogin(req, res, next) {
         // #5 Create token with users mongoose id (actually chose to do whole object just without the password ?).
         const accessToken = generateAccessToken(user);
 
+        //! TEMP
+        console.log(`Backend succesfully logged in`);
+
         //! #4 SEND TOKEN TO FRONTEND HOOK - JOB IS DONE.
         //! SEND CLEANED UP USER INFO (NO PASSWORD) TO FRONTEND IN ADDITION TO THE TOKEN !!!
         return res.status(200).json({ user: user, token: accessToken });
 
     } catch(error) {
-        console.error(error); //! Basic for now.
+        console.error(`This is the user controller: ${error}`); //! Basic for now.
     }
 }
 

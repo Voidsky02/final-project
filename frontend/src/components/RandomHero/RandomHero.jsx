@@ -5,7 +5,6 @@ import useRandomHero from '../../hooks/useRandomHero.js';
 function RandomHero() {
     // extract variables from useRandomHero custom hook
     const { randomHero, refetch, isLoading, error } = useRandomHero();
-    {console.log(`This is the randomHero object for displaying: ${JSON.stringify(randomHero)}`)}
     
     // Extract relevant fields from randomHero object for easier use
     // if (randomHero) {
