@@ -1,0 +1,59 @@
+.modal {
+/* Styles to hide content until isOpen is === true */
+opacity: 0;
+transform: scale(0.95);
+pointer-events: none;
+
+/* Regular modal styles */
+background-color: rgba(0, 0, 0, 0.5);
+width: 100vw;
+height: 100vh;
+top: 0;
+left: 0;
+cursor: pointer;
+}
+
+.modal__opened {
+    /* Undos styles in .modal that make it hidden */
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.modal__container {
+    background-color: white;
+    position: relative;
+    padding: 16px 8px;
+    max-width: 496px; /*! Do not know if I should keep this*/
+}
+
+.modal__close-button {
+    /* background-image: ; */
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    opacity: 0.5;
+}
+
+.modal__close-button:hover {
+    opacity: 1;
+}
+
+.modal__title {
+    margin: 0 0 24px 0;
+}
+
+.modal__form {
+    margin: 0 0 24px 0;
+}
+
+.modal__submit-button {
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
