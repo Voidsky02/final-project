@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 
 //! Need cleaning up.
-function Header({ isLoggedIn, currentUser, openModal, closeModal }) { // Changed layout depending on wether user is signed in or not.
+function Header({ isLoggedIn, currentUser, openModal, closeModal, logout }) { // Changed layout depending on wether user is signed in or not.
     // useState variables
 
     // useEffect
@@ -36,7 +36,7 @@ function Header({ isLoggedIn, currentUser, openModal, closeModal }) { // Changed
                                 <Link className="header__link" to="/profile">Profile</Link>                        
                             </li>
                             <li className="header__item" >
-                                <button className="" onClick={() => {/* Logout & closeModal */}}>
+                                <button className="" onClick={logout}>
                                     Sign out
                                 </button>
                             </li>

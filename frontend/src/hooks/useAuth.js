@@ -20,7 +20,7 @@ function useAuth() {
             const { user, token } = response.data;
 
             // Store basic user info in browsers local storage.
-            localStorage.setItem('user', user._id); //! Just the ID ??
+            localStorage.setItem('user', JSON.stringify(user)); //! Just the ID ??
 
             // Store access token in browsers local storage.
             localStorage.setItem('token', token);
@@ -28,7 +28,7 @@ function useAuth() {
             // Update isLoggedIn and currentUser.
             setIsLoggedIn(true);
 
-            setCurrentUser(user._id); //! Do I want this to be the name or the ID ?
+            setCurrentUser(user); //! Do I want this to be the name or the ID ?
 
         } catch(error) {
             console.error(error); //! Basic for now.

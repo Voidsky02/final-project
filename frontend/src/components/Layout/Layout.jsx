@@ -25,7 +25,7 @@ function Layout() {
 
     return (
     <>
-        <Header isLoggedIn={isLoggedIn} currentUser={currentUser} openModal={openModal} closeModal={closeModal} />
+        <Header isLoggedIn={isLoggedIn} currentUser={currentUser} logout={logout} openModal={openModal} closeModal={closeModal} />
         <Outlet /> {/* This is what displays the child routes AKA all other components */}
         <Footer />
         
@@ -39,6 +39,7 @@ function Layout() {
             isOpen={ activeModal === "login" ? true : false } 
             closeModal={closeModal}
             handleOffModalClick={handleOffModalClick}
+            login={login}
         />
     </>
     );

@@ -3,16 +3,32 @@ import './LoginModal.css';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import useForm from '../../hooks/useForm';
 
-function LoginModal({ isOpen, closeModal, handleOffModalClick }) {
+function LoginModal({ isOpen, closeModal, handleOffModalClick, login }) {
     const { values, handleChange, resetForm } = useForm({ email: "", password: ""  });
 
     async function handleLogin(e) {
         try {
-            //! What else is needed and does this need to be async ?
+            //! Add is loading state ??
+            // Prevent refresh on submit.
             e.preventDefault();
+
+            // Call the custom hooks login function (which calls the backend login func as well).
+            await login(values); // Since in scope of values have it use it directly, since i ran into an issue of how to pass the form values to the function when using a reusable boilerplate form component.
+
+            // Clear input fields on successfull login.
             resetForm();
+
+            // Close the modal.
+            closeModal();
+
+            //! TEMP.
+            console.log('Successfully Logged In.')
+
         } catch(error) {
             console.error(error); //! Add more later.
+
+            //! TEMP
+            console.log('Login Failed.')
         }
     }
 

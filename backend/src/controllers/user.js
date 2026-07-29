@@ -31,7 +31,7 @@ async function createUser(req, res, next) { //! I think this was just boilerplat
         delete newUserObject.password;
 
         //! Create json web token
-        const accessToken = generateAccessToken(newUserObject._id); 
+        const accessToken = generateAccessToken(newUserObject); 
         
         // Successfull response.
         return res.status(200).json({
@@ -52,20 +52,24 @@ async function backendLogin(req, res, next) {
         }
 
         // #2 Find user in the DB. //!THIS IS WHERE THE FRONT END GETS THE USER INFO FROM - NOT FORM !!!!!
-        const user = await User.findOne({ email: email }).select('+password');
-        if (!user) {
+        const userDocument = await User.findOne({ email: email }).select('+password');
+        if (!userDocument) {
             return res.status(401).json({ message: 'Invalid email or password.' });
         }
 
         // #4 Verify the passwords match (Never unhash then compare, just use bcrypt.compare() ).
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(password, userDocument.password);
 
         if (!isMatch) {
             return res.status(401).json({ message: 'Invalid email or password' })
         }
 
-        // #5 Create token with users mongoose id.
-        const accessToken = generateAccessToken(user._id);
+        // Transform mongo user document to json object & delete password field.
+        const user = userDocument.toJSON();
+        delete user.password; //! Will this work? Dont want frontend getting the password.
+
+        // #5 Create token with users mongoose id (actually chose to do whole object just without the password ?).
+        const accessToken = generateAccessToken(user);
 
         //! #4 SEND TOKEN TO FRONTEND HOOK - JOB IS DONE.
         //! SEND CLEANED UP USER INFO (NO PASSWORD) TO FRONTEND IN ADDITION TO THE TOKEN !!!
