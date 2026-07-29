@@ -17,16 +17,17 @@ function Header() {
     */
     return (
         <header className='header'>
-            <nav>
-                <ul>
-                    <li className="header__link">
-                        <Link className="" to="/">Home</Link>                        
+            <p className="header__image" >LOGO</p> {/*! Placeholder */}
+            <nav className='header__nav'>
+                <ul className="header__list">
+                    <li className="header__item">
+                        <Link className="header__link" to="/">Home</Link>                        
                     </li>
-                    <li className="header__link">
-                        <Link className="" to="/profile">Profile</Link>                        
+                    <li className="header__item">
+                        <Link className="header__link" to="/profile">Profile</Link>                        
                     </li>
-                    <li className="header__link">
-                        <Link className="" to="/battle">Battle</Link>
+                    <li className="header__item">
+                        <Link className="header__link" to="/battle">Battle</Link>
                     </li>
                 </ul>
             </nav>
