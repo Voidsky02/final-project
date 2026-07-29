@@ -22,4 +22,6 @@ async function getAllHeroData() {
     }
 }
 
+// Fetch random hero from API
+
 export { getAllHeroData };
