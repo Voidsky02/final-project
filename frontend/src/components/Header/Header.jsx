@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-function Header() {
+function Header({ isLoggedIn, openModal }) { // Changed layout depending on wether user is signed in or not.
     // useState variables
 
     // useEffect
@@ -26,9 +26,28 @@ function Header() {
                     <li className="header__item">
                         <Link className="header__link" to="/battle">Battle</Link>
                     </li>
-                    <li className="header__item">
-                        <Link className="header__link" to="/profile">Profile</Link>                        
-                    </li>                    
+                    {/* Below is going to conditionally render elements*/}
+                    {isLoggedIn ? (
+                        <>
+                            <li className="header__item">
+                                <Link className="header__link" to="/profile">Profile</Link>                        
+                            </li>
+                        </>
+                        ) : (
+                        <>
+                            <li className="header__item" >
+                                <button className="">
+                                    Sign in
+                                </button>
+                            </li>
+                            <li className="header__item" >
+                                <button className="" onClick={() => openModal("register")} >
+                                    Sign up
+                                </button>
+                            </li>
+                        </>
+                        )
+                    }                                        
                 </ul>
             </nav>
         </header>

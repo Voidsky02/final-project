@@ -5,6 +5,7 @@ transform: scale(0.95);
 pointer-events: none;
 
 /* Regular modal styles */
+position: absolute;
 background-color: rgba(0, 0, 0, 0.5);
 width: 100vw;
 height: 100vh;
@@ -21,10 +22,17 @@ cursor: pointer;
 }
 
 .modal__container {
+    position: absolute;
+    /* New modern method of centering things v */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* New modern method of centering things ^ */
     background-color: white;
-    position: relative;
+    /*! position: relative; - OLD ????*/
     padding: 16px 8px;
     max-width: 496px; /*! Do not know if I should keep this*/
+    border-radius: 5px;
 }
 
 .modal__close-button {
@@ -35,10 +43,22 @@ cursor: pointer;
     top: 20px;
     right: 28px;
     opacity: 0.5;
+    /*! For centering the X inside - NOT WORKING*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: none; */
 }
 
 .modal__close-button:hover {
     opacity: 1;
+}
+
+.modal__close-button svg {
+    /*! The X icon - NOT WORKING */
+    width: 20px;
+    height: 20px;
+    color: rgb(0, 0, 0,);
 }
 
 .modal__title {
@@ -51,9 +71,14 @@ cursor: pointer;
 
 .modal__submit-button {
     padding: 8px 16px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgb(0, 0, 0);
+    opacity: 0.5;
     color: white;
     border-radius: 4px;
     border: none;
     cursor: pointer;
+}
+
+.modal__submit-button:hover {
+    opacity: 1;
 }
