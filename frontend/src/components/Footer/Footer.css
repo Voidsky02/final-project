@@ -2,3 +2,7 @@
     width: 100%;
     background-color: blue; /*! TEMP */
 }
+
+.footer__title {
+    margin: 0;
+}
