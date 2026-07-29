@@ -29,6 +29,10 @@ async function fetchRandomHero() {
         // and highest ID's of the superheros in the API.
         //! This is hardcoded which is probably not good in case API is
         //! altered
+        // 
+        // ! Gaps in Hero ID's in API - possible fix:
+        //! If returned hero is 404 - generate new number and try again
+        //! Until successful
         const randomNumber = Math.floor(Math.random() * 731) + 1;
 
 
