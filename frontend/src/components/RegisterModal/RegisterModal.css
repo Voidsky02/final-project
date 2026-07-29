@@ -1,0 +1,9 @@
+.register__form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.register__label {
+    align-self: flex-start;
+}
