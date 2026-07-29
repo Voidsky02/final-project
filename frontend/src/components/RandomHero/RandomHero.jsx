@@ -13,7 +13,7 @@ function RandomHero() {
     //! this returns if component isloading
     if (isLoading) {
         return (
-            <div loading-container>
+            <div className="loading-container">
                 <h2>Fetching Hero...</h2>
                 //! Add spinner
             </div>
@@ -31,7 +31,7 @@ function RandomHero() {
     //! this returns is everything worked
     return (
         <div className="random-hero__container">
-            
+            <p>TEMP - TO SHOW HERO FETCH WORKED</p>
         </div>
     );
 }
