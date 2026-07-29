@@ -1,4 +1,5 @@
 .header {
+    margin-bottom: 30px; /*! for page layout spacing*/
     width: 100%;
     background-color: blue; /*! TEMP */
     /* this will control spacing between logo and nav section */
