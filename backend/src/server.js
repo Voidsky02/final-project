@@ -7,7 +7,7 @@ import { errors } from 'celebrate';
 import { router } from './routes/index.js';
 import { initializeDatabase } from './utils/initializeDatabase.js';
 
-// Load environment variables from .env
+// Load global environment variables from .env
 dotenv.config();
 
 const app = express();
