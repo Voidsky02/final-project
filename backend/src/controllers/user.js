@@ -43,6 +43,15 @@ async function createUser(req, res, next) { //! I think this was just boilerplat
     }
 }
 
+// Update users profile information.
+async function updateUser(req, res, next) {
+    try {
+
+    } catch(error) {
+        
+    }
+}
+
 async function backendLogin(req, res, next) {
     try {
         // #1 Verify form input is valid.

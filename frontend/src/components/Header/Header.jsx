@@ -30,10 +30,13 @@ function Header({ isLoggedIn, currentUser, openModal, closeModal, logout }) { //
                     {/* Below is going to conditionally render elements*/}
                     {isLoggedIn ? (
                         <>
-                            //! Avatar somewhere and when clicked also goes to profile?
-                            //! Username should be displayed too
+                            {/*! Avatar somewhere and when clicked also goes to profile?
+                            Username should be displayed too*/}
                             <li className="header__item">
-                                <Link className="header__link" to="/profile">Profile</Link>                        
+                                <Link className="header__link" to="/profile">
+                                {/* avatar if it exists, first letter of username if it doesnt */}
+                                {currentUser.avatar ? (<img className='header__avatar' src={currentUser.avatar} alt="users profile picture" />) : (<div className="header__avatar">{currentUser.username[0]}</div>)}
+                                </Link>                        
                             </li>
                             <li className="header__item" >
                                 <button className="" onClick={logout}>
