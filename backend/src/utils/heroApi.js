@@ -7,6 +7,7 @@ I will then store them in the db maybe, and do all my creating there.
 
 const baseUrl = 'https://akabab.github.io/superhero-api/api';
 
+// Fetch every hero from api
 async function getAllHeroes() {
     try {
         const heroList = await axios.get(`${baseUrl}/all.json`, {})
@@ -20,5 +21,8 @@ async function getAllHeroes() {
         return null;
     }
 }
+
+// Create database entries for each hero (trim the excess info) *runs 1 time*
+async function createHeroDatabase() {}
 
 export { getAllHeroes };
