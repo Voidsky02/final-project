@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 
 /* Define the Schema */
 const userSchema = mongoose.Schema({
-    name: { type: String, default: '' }, //! In useForm we have 'username'
+    username: { type: String, required: true }, //! In useForm we have 'username'
     avatar: { type: String, default: '' }, //! This is not included in useForm
     email: { type: String, required: true, unique: true }, /*! Needs to be validated */
     password: { type: String, required: true } /*! Must be hashed */

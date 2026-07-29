@@ -1,7 +1,7 @@
 /* Connects URL Endpoints to Controllers. Ex: when GET /Signup -> run the createUser function */
 import express from 'express';
 import { celebrate } from 'celebrate';
-import registerSchema from '../middlewares/validation.js';
+import celebrateRegisterSchema from '../middlewares/validation.js';
 import { createUser } from '../controllers/user.js';
 
 const userRouter = express.Router();
@@ -15,7 +15,7 @@ celebrate({ [Segments.BODY]: registrationSchema })
 
  */
 
-/*! Test route */
-userRouter.post('/signup', celebrate({ body: registerSchema }, { abortEarly: false }), createUser);
+/*! Test route */ //! Do I do celebrate, then auth, then createUser?
+userRouter.post('/signup', celebrate({ body: celebrateRegisterSchema }, { abortEarly: false }), createUser);
 
 export default userRouter;

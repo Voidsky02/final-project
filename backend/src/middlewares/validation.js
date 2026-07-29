@@ -9,7 +9,8 @@ input matches our Joi schema, if it does it lets it pass to the next step
 appropriate error message
 */
 
-const registerSchema = Joi.object({
+//! Need an avatar field - users model includes it.
+const celebrateRegisterSchema = Joi.object({
     username: Joi.string().alphanum().min(3).max(30).trim().required().messages({
         'any.required': 'Username field cannot be left blank',
         'string.min': 'Username must be longer than 3 characters',
@@ -31,4 +32,4 @@ const registerSchema = Joi.object({
     }),
 });
 
-export default registerSchema;
+export default celebrateRegisterSchema;

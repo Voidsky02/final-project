@@ -9,7 +9,7 @@ import useForm from "../../hooks/useForm.js";
 //! Recieve useModal hook functions and variables as props from <Laytout />
 function RegisterModal({ isOpen, closeModal, handleOffModalClick }) {
 
-    const { values, handleChange, resetForm } = useForm({ username: "", email: "", password: "", confirmPassword: "" });
+    const { values, handleChange, resetForm } = useForm({ username: "", email: "", password: "", confirmPassword: "" }); //! Add avatar field
 
     // handleRegister is the only function created in the custom modal itself
     // because the submit logic is different depending on the modal
