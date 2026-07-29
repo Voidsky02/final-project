@@ -1,5 +1,5 @@
 import { Hero } from '../models/hero.js';
-import { getAllHeroData } from './heroApi.js';
+import { fetchAllHeroData } from './heroApi.js';
 
 // Populate database with all heroes from API
 async function createHeroEntries(heroArray) {
@@ -26,7 +26,7 @@ async function initializeDatabase() {
             return;
         } else {
             // If entries don't exist, gather data then create entries in db
-            const heroData = await getAllHeroData();
+            const heroData = await fetchAllHeroData();
             const createdHeroDocuments =  await createHeroEntries(heroData);
             console.log('✅ Initialization Finished: Hero entries created')
             return createdHeroDocuments;
