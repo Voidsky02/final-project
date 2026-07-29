@@ -19,7 +19,7 @@ function RegisterModal({ isOpen, closeModal, handleOffModalClick }) {
             // then called a custom onSignUp function in here and thats it.
             event.preventDefault();
             //! More ????
-        resetForm();
+            resetForm();
         } catch (error) {
             console.error(error) //! Make better later.
         }

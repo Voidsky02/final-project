@@ -1,0 +1,9 @@
+.login__form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.login__label {
+    align-self: flex-start;
+}

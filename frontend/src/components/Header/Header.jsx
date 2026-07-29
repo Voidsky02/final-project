@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-function Header({ isLoggedIn, openModal }) { // Changed layout depending on wether user is signed in or not.
+//! Need cleaning up.
+function Header({ isLoggedIn, currentUser, openModal, closeModal }) { // Changed layout depending on wether user is signed in or not.
     // useState variables
 
     // useEffect
@@ -29,14 +30,21 @@ function Header({ isLoggedIn, openModal }) { // Changed layout depending on weth
                     {/* Below is going to conditionally render elements*/}
                     {isLoggedIn ? (
                         <>
+                            //! Avatar somewhere and when clicked also goes to profile?
+                            //! Username should be displayed too
                             <li className="header__item">
                                 <Link className="header__link" to="/profile">Profile</Link>                        
+                            </li>
+                            <li className="header__item" >
+                                <button className="" onClick={() => {/* Logout & closeModal */}}>
+                                    Sign out
+                                </button>
                             </li>
                         </>
                         ) : (
                         <>
                             <li className="header__item" >
-                                <button className="">
+                                <button className="" onClick={() => openModal("login")}>
                                     Sign in
                                 </button>
                             </li>

@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'; // enables me to persistently render 
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
 import RegisterModal from '../RegisterModal/RegisterModal.jsx';
+import LoginModal from '../LoginModal/LoginModal.jsx';
 import useModal from '../../hooks/useModal.js';
 import useAuth from '../../hooks/useAuth.js';
 
@@ -24,13 +25,18 @@ function Layout() {
 
     return (
     <>
-        <Header isLoggedIn={isLoggedIn} currentUser={currentUser} openModal={openModal} />
+        <Header isLoggedIn={isLoggedIn} currentUser={currentUser} openModal={openModal} closeModal={closeModal} />
         <Outlet /> {/* This is what displays the child routes AKA all other components */}
         <Footer />
         
         {/* You put modals at the end so they are rendered last, and therefore rendered on top of all other components naturally. */}
         <RegisterModal
             isOpen={activeModal === "register" ? true : false}
+            closeModal={closeModal}
+            handleOffModalClick={handleOffModalClick}
+        />
+        <LoginModal
+            isOpen={ activeModal === "login" ? true : false } 
             closeModal={closeModal}
             handleOffModalClick={handleOffModalClick}
         />
