@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { router } from './routes/index.js';
 import { initializeDatabase } from './utils/initializeDatabase.js';
 
 // Load environment variables from .env
@@ -30,6 +31,9 @@ mongoose.connect(process.env.MONGO_URI)
     console.error('❌ MongoDB connection error:', error.message);
     process.exit(1); // Stop if DB connection fails (good for dev)
   });
+
+  // Custom Middleware (correct placement?)
+  app.use('/', router);
 
 // Start the server
 const PORT = process.env.PORT || 5000;
