@@ -1,6 +1,10 @@
 /* Define functions that run on data when specific requestes and URL's are called */
+import dontenv from 'dotenv';
 import User from '../models/user.js';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt'; // Hash password for storage.
+import jwt from 'jsonwebtoken'; // Token creation for logging in.
+
+dontenv.config(); // This allows us to extract values from our .env file ?
 
 //! Need to align the user fields across my files, they are mismatched everywhere, specifically with the avatar field
 async function createUser(req, res, next) { //! I think this was just boilerplate code
@@ -28,9 +32,15 @@ async function createUser(req, res, next) { //! I think this was just boilerplat
         // Convert MongoDB response to regular object & delete password field
         const newUserObject = newUserDocument.toJSON();
         delete newUserObject.password;
+
+        //! Create json web token
+        const accessToken = jwt.sign(newUserObject, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '7d' }); //! Might need to implement refresh tokens in the future rather than simply hardcoded week long expiration dates.
         
-        //Successfull response
-        return res.status(200).send(newUserObject);
+        // Successfull response.
+        return res.status(200).json({
+            user: newUserObject,
+            accessToken: accessToken
+        });
     } catch (error) {
         console.error(error);
     }
