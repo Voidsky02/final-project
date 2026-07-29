@@ -12,7 +12,7 @@ const heroSchema = new mongoose.Schema({
         "combat": { type: Number, default: 0 },
     },
     biography: {
-        "fullName": { type: String, required: true },
+        "fullName": { type: String, default: '' }, //empty strings considered invalid, so field cant be required
         "alterEgos": { type: String, default: '' },
         "aliases": { type: [String], default: [] }, // [String] tells mongoose this field will be array with strings inside
         "placeOfBirth": { type: String, default: '' },

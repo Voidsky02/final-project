@@ -3,10 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
-// DELETE LATER
-import { getAllHeroes } from './utils/heroApi.js';
-// DELETE LATER
+import { initializeDatabase } from './utils/initializeDatabase.js';
 
 // Load environment variables from .env
 dotenv.config();
@@ -27,6 +24,7 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('✅ MongoDB Atlas connected successfully');
     //! Populate the database here...
+    initializeDatabase(); //What do I do with returned result?    
   })
   .catch((error) => {
     console.error('❌ MongoDB connection error:', error.message);
@@ -39,9 +37,3 @@ app.listen(PORT, () => {
   console.log(`Server is listening on http://localhost:${PORT}`);
   console.log(`Test it: http://localhost:${PORT}/`);
 });
-
-// DELETE LATER - TESTING
-getAllHeroes();
-
-//! Run doHeroesExist, getAllHeroes, populateHeroes after successful DB
-//! connection...
