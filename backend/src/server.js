@@ -26,6 +26,7 @@ app.get('/', (req, res) => {
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('✅ MongoDB Atlas connected successfully');
+    //! Populate the database here...
   })
   .catch((error) => {
     console.error('❌ MongoDB connection error:', error.message);
@@ -41,3 +42,6 @@ app.listen(PORT, () => {
 
 // DELETE LATER - TESTING
 getAllHeroes();
+
+//! Run doHeroesExist, getAllHeroes, populateHeroes after successful DB
+//! connection...
