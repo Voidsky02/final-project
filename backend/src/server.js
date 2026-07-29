@@ -15,11 +15,6 @@ const app = express();
 app.use(cors());                    // Allows frontend (localhost:5173) to connect
 app.use(express.json());            // Parses incoming JSON requests (important for forms)
 
-// Quick test route to confirm the server is alive
-app.get('/', (req, res) => {
-  res.json({ message: 'Backend server is running 🚀' });
-});
-
 // Connect to MongoDB Atlas
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
