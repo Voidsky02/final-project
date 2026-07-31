@@ -14,7 +14,7 @@ function useAuth() {
             //! FROM DATA WOULD NOT CONTAIN THE ID FIELD
             const { email, password } = loginFormInput;
 
-            // Call backend login function and recieve token & user data if successful - extract them from response object.
+            // Call backend login function and receive token & user data if successful - extract them from response object.
             //! AXIOS WRAPS RESPONSE - DATA IS FOUND IN response.data
             const response = await axios.post('http://localhost:5000/login', { email: email, password: password });
             const { user, token } = response.data;
@@ -52,26 +52,20 @@ function useAuth() {
         console.log(`Successfully logged out`);
     }
 
-    //! Store user and token in local storage. - THIS WILL GO IN LOGIN FUNC.
-    // function storeAuthData(userId, accessToken) {
-    //     // Store basic user info in browsers local storage.
-    //     localStorage.setItem('user', userId);
+    async function updateUser(newUser) {
+        // Update currentUser variable with new info.
+        setCurrentUser(newUser);
 
-    //     // Store basic user info in browsers local storage.
-    //     localStorage.setItem('token', accessToken);
-    // }
-
-    //! THIS WILL GO IN LOGOUT FUNC.
-    // Remove all data from local storage (think this will also reset isLoggedIn and currentUser to empty states).
-    // function clearAuthData() {
-    //     localStorage.clear();
-    // }
+        // Update the user info in local storage.
+        localStorage.setItem('user', JSON.stringify(newUser));
+    } 
 
     return {
         login,
         logout,
         isLoggedIn,
         currentUser,
+        updateUser
     }; //! Do i need more or just expose these two functions ?
 }
 

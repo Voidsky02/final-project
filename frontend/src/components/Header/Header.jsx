@@ -38,6 +38,7 @@ function Header({ isLoggedIn, currentUser, openModal, closeModal, logout }) { //
                                 {currentUser.avatar ? (<img className='header__avatar' src={currentUser.avatar} alt="users profile picture" />) : (<div className="header__avatar">{currentUser.username[0]}</div>)}
                                 </Link>                        
                             </li>
+                            <button onClick={() => openModal('edit')}>Edit</button> {/* TEMP */}
                             <li className="header__item" >
                                 <button className="" onClick={logout}>
                                     Sign out

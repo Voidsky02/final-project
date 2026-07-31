@@ -10,7 +10,7 @@ function authenticateToken(req, res, next) {
 
     // Check to see if token exists & is in proper format.
     if (!authorization || !authorization.startsWith('Bearer ')) {
-        return res.status(201).send({ message: "Authorization required."});
+        return res.status(401).send({ message: "Authorization required."});
     }
 
     // Extract only the token.

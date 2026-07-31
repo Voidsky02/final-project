@@ -1,6 +1,6 @@
 /* Define functions that run on data when specific requestes and URL's are called */
 import User from '../models/user.js';
-import bcrypt from 'bcrypt'; // Hash password for storage.
+import bcryptjs from 'bcryptjs'; // Hash password for storage.
 import { generateAccessToken } from '../utils/tokenServices.js';
 
 //! Need to align the user fields across my files, they are mismatched everywhere, specifically with the avatar field
@@ -16,7 +16,7 @@ async function createUser(req, res, next) { //! I think this was just boilerplat
         }
 
         // Hash the password in prep for database storing.
-        const hash = await bcrypt.hash(password, 10);
+        const hash = await bcryptjs.hash(password, 10);
         console.log(username, email, hash);
 
         // Add the user to the database (mongoose will respond with a generated _id).
@@ -33,7 +33,7 @@ async function createUser(req, res, next) { //! I think this was just boilerplat
         //! Create json web token
         const accessToken = generateAccessToken(newUserObject); 
         
-        // Successfull response.
+        // Successful response.
         return res.status(200).json({
             user: newUserObject,
             accessToken: accessToken
@@ -51,7 +51,19 @@ async function updateUser(req, res, next) {
 
         //! User the users ID to authorize the change, cause other fields might not be in the request (for example if the user wants to change only the avatar then the username field wont exist and therefore cant be used to search for the user in the DB).
         // See if the user exists in the database, and if so, update info.
-        const userExists = User.findOneAndUpdate({})
+        const updatedUserDocument = User.findOneAndUpdate({ _id: req.user._id }, { $Set: { username: username, avatar: avatar }}, { returnDocument: 'after' } );
+
+        // Convert document to JSON object and delete password field.
+        const updatedUserObject = updatedUserDocument.toJSON();
+        delete updatedUserObject.password;
+
+        //! TODO - DELETE LATER
+        console.log(updatedUserObject);
+
+        // Successful response.
+        return res.status(200).json({
+            user: updatedUserObject
+        });
         
     } catch(error) {
 
@@ -72,8 +84,8 @@ async function backendLogin(req, res, next) {
             return res.status(401).json({ message: 'Invalid email or password.' });
         }
 
-        // #4 Verify the passwords match (Never unhash then compare, just use bcrypt.compare() ).
-        const isMatch = await bcrypt.compare(password, userDocument.password);
+        // #4 Verify the passwords match (Never unhash then compare, just use bcryptjsjs.compare() ).
+        const isMatch = await bcryptjs.compare(password, userDocument.password);
 
         if (!isMatch) {
             return res.status(401).json({ message: 'Invalid email or password' })
@@ -100,4 +112,4 @@ async function backendLogin(req, res, next) {
 
 //! Something to check if a user already exists in DB - will be used in auth.js?
 
-export { createUser, backendLogin };
+export { createUser, backendLogin, updateUser };

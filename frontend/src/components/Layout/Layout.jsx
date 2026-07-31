@@ -3,13 +3,14 @@ import { Outlet } from 'react-router-dom'; // enables me to persistently render 
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
 import RegisterModal from '../RegisterModal/RegisterModal.jsx';
+import EditProfileModal from '../EditProfileModal/EditProfileModal.jsx';
 import LoginModal from '../LoginModal/LoginModal.jsx';
 import useModal from '../../hooks/useModal.js';
 import useAuth from '../../hooks/useAuth.js';
 
 function Layout() {
     // For global control of logged in/out users.
-    const { isLoggedIn, currentUser, login, logout } = useAuth();
+    const { isLoggedIn, currentUser, login, logout, updateUser } = useAuth();
 
     // For global control of active modals.
     const { activeModal, openModal, closeModal, handleOffModalClick } = useModal();
@@ -41,6 +42,14 @@ function Layout() {
             handleOffModalClick={handleOffModalClick}
             login={login}
         />
+        { isLoggedIn && (<EditProfileModal 
+            isOpen={ activeModal === "edit" ? true : false }
+            closeModal={closeModal}
+            handleOffModalClick={handleOffModalClick}
+            currentUser={currentUser}
+            updateUser={updateUser}
+            />)
+        }
     </>
     );
 }
