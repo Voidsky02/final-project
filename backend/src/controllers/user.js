@@ -6,8 +6,8 @@ import { generateAccessToken } from '../utils/tokenServices.js';
 //! Need to align the user fields across my files, they are mismatched everywhere, specifically with the avatar field
 async function createUser(req, res, next) { //! I think this was just boilerplate code
     try {
-        // Extract new user values from the request.
-        const { username, email, password } = req.body; //! When do i compare password to confirmPassword? ALSO need avatar field
+        // Extract new user values from the request. //!MUST ADD AVATAR FIELD
+        const { username, avatar, email, password } = req.body; //! When do i compare password to confirmPassword? ALSO need avatar field
 
         // Check to see if user already exists in the database.
         const alreadyExists = await User.findOne({ email: email });
@@ -17,11 +17,12 @@ async function createUser(req, res, next) { //! I think this was just boilerplat
 
         // Hash the password in prep for database storing.
         const hash = await bcryptjs.hash(password, 10);
-        console.log(username, email, hash);
+        console.log(username, avatar, email, hash);
 
         // Add the user to the database (mongoose will respond with a generated _id).
         const newUserDocument = await User.create({
             username: username,
+            avatar: avatar,
             email: email,
             password: hash,
         });
@@ -30,6 +31,7 @@ async function createUser(req, res, next) { //! I think this was just boilerplat
         const newUserObject = newUserDocument.toJSON();
         delete newUserObject.password;
 
+        console.log(`This is the newUserObject in createUser (should have an _id field for generateAccessToken to use): ${JSON.stringify(newUserObject)}`)
         //! Create json web token
         const accessToken = generateAccessToken(newUserObject); 
         
@@ -45,6 +47,7 @@ async function createUser(req, res, next) { //! I think this was just boilerplat
 
 // Update users profile information.
 async function updateUser(req, res, next) {
+    console.log(`This is the user object in updateUser:${req.user}`);
     try {
         // Extract values - only username and avatar for now
         const { username, avatar } = req.body;
@@ -99,7 +102,7 @@ async function backendLogin(req, res, next) {
         const accessToken = generateAccessToken(user);
 
         //! TEMP
-        console.log(`Backend succesfully logged in`);
+        console.log(`Backend successfully logged in`);
 
         //! #4 SEND TOKEN TO FRONTEND HOOK - JOB IS DONE.
         //! SEND CLEANED UP USER INFO (NO PASSWORD) TO FRONTEND IN ADDITION TO THE TOKEN !!!

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import './RegisterModal.css';
+import axios from 'axios';
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
 //! Import useModal - All universal modal functionality ???
@@ -7,9 +8,9 @@ import useForm from "../../hooks/useForm.js";
 // For Profile creation.
 
 //! Recieve useModal hook functions and variables as props from <Laytout />
-function RegisterModal({ isOpen, closeModal, handleOffModalClick }) {
+function RegisterModal({ isOpen, closeModal, handleOffModalClick, login }) {
 
-    const { values, handleChange, resetForm } = useForm({ username: "", email: "", password: "", confirmPassword: "" }); //! Add avatar field
+    const { values, handleChange, resetForm } = useForm({ username: "", avatar: "", email: "", password: "", confirmPassword: "" }); //! Add avatar field
 
     // handleRegister is the only function created in the custom modal itself
     // because the submit logic is different depending on the modal
@@ -18,8 +19,32 @@ function RegisterModal({ isOpen, closeModal, handleOffModalClick }) {
             // In previous project i just prevented default behavior,
             // then called a custom onSignUp function in here and thats it.
             event.preventDefault();
-            //! More ????
+
+            // extract variables from values
+            const { username, avatar, email, password, confirmPassword } = values;
+            
+            // Call createUser through an axios request.
+            const response = await axios.post('http://localhost:5000/signup', { username: username, avatar: avatar, email: email, password: password, confirmPassword: confirmPassword });
+            const { user, token } = response.data; // User is the whole object, Token only includes the user._id in its payload.
+
+            //! TEMP
+            window.alert(`New User created Successfully!`);
+
+            // Create object that matches what the login function expects.
+            const loginData = { email: email, password: password };
+
+            // Automatically log user in after creation.
+            await login(loginData);
+
+            //! Temp
+            window.alert(`Automatic Login Successful!`);
+
+            // Clear fields.
             resetForm();
+
+            // Close Modal.
+            closeModal();
+
         } catch (error) {
             console.error(error) //! Make better later.
         }
@@ -58,6 +83,21 @@ function RegisterModal({ isOpen, closeModal, handleOffModalClick }) {
                 value={values.username}
                 onChange={handleChange}
                 placeholder="Enter username here"
+                required
+            />
+        </div>
+        <div className="register__form-field">
+            <label className="register__label" htmlFor="avatar">
+                Avatar
+            </label>
+            <input
+                className="register__input"
+                type="url"
+                id="avatar"
+                name="avatar"
+                value={values.avatar}
+                onChange={handleChange}
+                placeholder="Enter image url here"
                 required
             />
         </div>

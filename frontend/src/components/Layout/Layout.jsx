@@ -35,6 +35,7 @@ function Layout() {
             isOpen={activeModal === "register" ? true : false}
             closeModal={closeModal}
             handleOffModalClick={handleOffModalClick}
+            login={login}
         />
         <LoginModal
             isOpen={ activeModal === "login" ? true : false } 

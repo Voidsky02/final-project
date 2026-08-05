@@ -18,7 +18,7 @@ function useForm(initialValues, prefillData = null) {
     function handleChange(e) {
         const { name, value } = e.target;
         setValues({ ...values, [name]: value });
-        console.log(`${name}: ${value}`);
+        // console.log(`${name}: ${value}`);
     }
 
     // Reset form function to original states.

@@ -2,7 +2,7 @@
 import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken';
 
-dotenv.config(); // To use .env file varliables
+dotenv.config(); // To use .env file variables
 
 function authenticateToken(req, res, next) {
     // Extract token from request header.

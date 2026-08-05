@@ -18,6 +18,7 @@ const celebrateRegisterSchema = Joi.object({
         'string.alphanum': 'Username must only include letters and numbers',
 
     }),
+    avatar: Joi.string().uri({ scheme: ['http', 'https'] }).trim().allow(null, '').optional(),
     email: Joi.string().email().trim().required().messages({
         'any.required': 'Email field cannot be left blank',
         'string.email': 'Input must be a valid email'
