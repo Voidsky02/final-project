@@ -8,6 +8,9 @@ function authenticateToken(req, res, next) {
     // Extract token from request header.
     const { authorization } = req.headers;
 
+    //! DELETE LATER
+    console.log(`INITIATING AUTHENTICATE TOKEN`);
+
     // Check to see if token exists & is in proper format.
     if (!authorization || !authorization.startsWith('Bearer ')) {
         return res.status(401).send({ message: "Authorization required."});
@@ -27,6 +30,9 @@ function authenticateToken(req, res, next) {
 
     // Make the req.user equal to the tokens payload.
     req.user = payload;
+
+    //! DELETE LATER
+    console.log(`TOKEN AUTHENTICATED - MOVING TO NEXT STEP`);
 
     // Pass the result of this function to the next middleware.
     return next();

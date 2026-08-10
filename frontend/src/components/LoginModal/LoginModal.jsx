@@ -15,7 +15,7 @@ function LoginModal({ isOpen, closeModal, handleOffModalClick, login }) {
             // Call the custom hooks login function (which calls the backend login func as well).
             await login(values); // Since in scope of values have it use it directly, since i ran into an issue of how to pass the form values to the function when using a reusable boilerplate form component.
 
-            // Clear input fields on successfull login.
+            // Clear input fields on successful login.
             resetForm();
 
             // Close the modal.

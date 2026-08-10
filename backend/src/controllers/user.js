@@ -47,14 +47,17 @@ async function createUser(req, res, next) { //! I think this was just boilerplat
 
 // Update users profile information.
 async function updateUser(req, res, next) {
+    console.log('WE MADE IT TO UPDATE USER!!');
     console.log(`This is the user object in updateUser:${req.user}`);
     try {
+        //! THINK I FOUND THE ISSUE, req.body now only holds the ID, not the username and avatar, right or wrong?
         // Extract values - only username and avatar for now
-        const { username, avatar } = req.body;
+        const { username, avatar } = req.body; //! What is the structure of req.body, and does
 
         //! User the users ID to authorize the change, cause other fields might not be in the request (for example if the user wants to change only the avatar then the username field wont exist and therefore cant be used to search for the user in the DB).
         // See if the user exists in the database, and if so, update info.
-        const updatedUserDocument = User.findOneAndUpdate({ _id: req.user._id }, { $Set: { username: username, avatar: avatar }}, { returnDocument: 'after' } );
+        //! _ID IS NOT SEND FROM EDITPROFILEMODAL, MUST CHANGE
+        const updatedUserDocument = await User.findOneAndUpdate({ _id: req.user.user }, { $set: { username: username, avatar: avatar }}, { returnDocument: 'after' } );
 
         // Convert document to JSON object and delete password field.
         const updatedUserObject = updatedUserDocument.toJSON();
@@ -69,8 +72,9 @@ async function updateUser(req, res, next) {
         });
         
     } catch(error) {
-
+        console.error(error);
     }
+    console.log(`SUCCESSFULLY UPDATED USER - BACKEND`);
 }
 
 async function backendLogin(req, res, next) {

@@ -12,9 +12,21 @@ function EditProfileModal({ currentUser, updateUser, isOpen, closeModal, handleO
         try {
             // prevent page refresh.
             e.preventDefault();
+            
+            //! DELETE LATER
+            console.log('EDIT SUBMIT BUTTON PRESSED');
+
+            // Pull token from local storage and put in variable.
+            const token = localStorage.getItem('token');
+            
 
             // Call the updateUser backend controller.
-            const response = await axios.patch('http://localhost:5000/users/me', { username: values.username, avatar: values.avatar });
+            //! MUST SEND _ID SO IT CAN VERIFY THE USER
+            const response = await axios.patch('http://localhost:5000/users/me', { username: values.username, avatar: values.avatar }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             const updatedUser = response.data;
             
             // Call the front end useAuth updateUser to update currentUser and refresh token in local storage IF NEEDED
@@ -22,6 +34,7 @@ function EditProfileModal({ currentUser, updateUser, isOpen, closeModal, handleO
 
             //! I don't need to reset form cause the data comes prefilled?
             closeModal();
+            console.log(`ENTIRE REQUEST FINISHED`);
         } catch(error) {
             console.error(error);
         }
