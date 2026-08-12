@@ -27,7 +27,7 @@ function Layout() {
     return (
     <>
         <Header isLoggedIn={isLoggedIn} currentUser={currentUser} logout={logout} openModal={openModal} closeModal={closeModal} />
-        <Outlet /> {/* This is what displays the child routes AKA all other components */}
+        <Outlet context={{isLoggedIn, currentUser}} /> {/* This is what displays the child routes AKA all other components */}
         <Footer />
         
         {/* You put modals at the end so they are rendered last, and therefore rendered on top of all other components naturally. */}

@@ -1,7 +1,7 @@
 .header {
     margin-bottom: 30px; /*! for page layout spacing*/
     width: 100%;
-    background-color: blue; /*! TEMP */
+    background-color: rgba(43, 188, 255, 1);
     /* this will control spacing between logo and nav section */
     display: flex;
     justify-content: space-between;
@@ -34,4 +34,13 @@
 .header__link {
     color: white;
     /* text-align: center; */
+    display: flex;
+    align-items: center;
+}
+
+.header__avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid black;
 }

@@ -67,7 +67,7 @@ function EditProfileModal({ currentUser, updateUser, isOpen, closeModal, handleO
             </div>
             <div className='edit__form-field'>
                 <label className='edit__label' htmlFor='avatar'>
-                    avatar
+                    Avatar
                 </label>
                 <input
                     className='edit__input'

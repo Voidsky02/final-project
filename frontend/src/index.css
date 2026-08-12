@@ -1,4 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+/* General overall font */
+@font-face {
+  font-family: "Sora";
+  src: url("./fonts/Sora-VariableFont_wght.ttf") format("truetype");
+}
+
+/* For specific labels and titles. */
+@font-face {
+  font-family: "Chau";
+  src: url("./fonts/ChauPhilomeneOne-Regular.ttf") format("truetype");
+}
 
 :root {
   font-family: "Sora", system-ui, Avenir, Helvetica, Arial, sans-serif;

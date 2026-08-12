@@ -1,5 +1,4 @@
 /* Main page layout */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 .hero__container {
     display: flex;
@@ -15,26 +14,40 @@
     /* align-items: center; */
     text-align: left;
     padding-left: 20px; /*! Keep this only if it looks better (I think it does) */
+    max-width: 600px;
 }
-
-/* Right side styles */
-.hero__container_right-column {}
 
 /* Hero name */
 .hero__name {
     margin: 0 0 20px 0; /*! For now */
-    font-family: "Bebas Neue", sans-serif;
+    font-family: "Chau", sans-serif;
 }
 
 /* Hero stat information */
 .hero__section-title { /*! Generic name for all section titles */
     margin: 0;
-    font-family: "Bebas Neue", sans-serif;
+    font-family: "Chau", sans-serif;
+    width: 50%;
+    padding: 10px;
+    background: linear-gradient(to right, black, #242424);
+    
 }
 
-.stats__title {}
+.stats__list-item {
+    overflow-wrap: break-word;
+}
 
-.biography__title {}
+.biography__list-item {
+    overflow-wrap: break-word;
+}
 
-.appearance__title {}
+.appearance__list-item {
+    overflow-wrap: break-word;
+}
+
+/* Right side styles */
+.hero__image {
+    border: 5px solid rgba(191, 187, 187, 1);
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.95);
+}
 

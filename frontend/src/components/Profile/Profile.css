@@ -1,0 +1,17 @@
+.profile__title {
+    margin: 0 0 20px 0;
+}
+
+.profile__container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.profile__label {
+    margin: 0;
+}
+
+.user__username {
+    margin: 0;;
+}

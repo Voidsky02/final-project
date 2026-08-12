@@ -44,7 +44,7 @@ function RandomHero() {
                     <h2 className="hero__section-title stats__title">Stats</h2>
                     <ul className="stats__list">
                         {Object.entries(randomHero.powerstats).map(([key, value]) => {
-                            return <li key={key} className="stats__list_item">{`${key}: ${value}`}</li>
+                            return <li key={key} className="stats__list-item">{`${key}: ${value}`}</li>
                         })}
                     </ul>
                 </div>
@@ -52,7 +52,7 @@ function RandomHero() {
                     <h2 className="hero__section-title biography__title">Biography</h2>
                     <ul className="biography__list">
                         {Object.entries(randomHero.biography).map(([key, value]) => {
-                            return <li key={key} className="biography__list_item">{`${key}: ${value}`}</li>
+                            return <li key={key} className="biography__list-item">{`${key}: ${value}`}</li>
                         })}
                     </ul>
                 </div>
@@ -60,7 +60,7 @@ function RandomHero() {
                     <h2 className="hero__section-title appearance__title">Appearance</h2>
                     <ul className="appearance__list">
                         {Object.entries(randomHero.appearance).map(([key, value]) => {
-                            return <li key={key} className="appearance__list_item">{`${key}: ${value}`}</li>
+                            return <li key={key} className="appearance__list-item">{`${key}: ${value}`}</li>
                         })}
                     </ul>
                 </div>  

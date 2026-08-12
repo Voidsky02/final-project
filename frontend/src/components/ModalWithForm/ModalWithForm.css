@@ -5,7 +5,7 @@ transform: scale(0.95);
 pointer-events: none;
 
 /* Regular modal styles */
-position: absolute;
+position: fixed;
 background-color: rgba(0, 0, 0, 0.5);
 width: 100vw;
 height: 100vh;
@@ -72,7 +72,7 @@ cursor: pointer;
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
-    background-color: blue; /*! TEMPORARY */
+    /* background-color: blue; ! TEMPORARY */
 }
 
 .modal__submit-button {
