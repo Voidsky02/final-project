@@ -24,9 +24,6 @@ function Header({ isLoggedIn, currentUser, openModal, closeModal, logout }) { //
                     <li className="header__item">
                         <Link className="header__link" to="/">Home</Link>                        
                     </li>
-                    <li className="header__item">
-                        <Link className="header__link" to="/battle">Battle</Link>
-                    </li>
                     {/* Below is going to conditionally render elements*/}
                     {isLoggedIn ? (
                         <>

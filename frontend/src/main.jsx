@@ -9,7 +9,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // Might have to move the browser router to a different file for this.
 import Layout from "./components/Layout/Layout.jsx";
 import Profile from "./components/Profile/Profile.jsx";
-import Battle from "./components/Battle/Battle.jsx";
 import PageNotFound from './components/PageNotFound/PageNotFound.jsx';
 
 const router = createBrowserRouter([
@@ -18,7 +17,6 @@ const router = createBrowserRouter([
     children: [
       {path: '/', element: <App />},
       {path: '/profile', element: <Profile />},
-      {path: '/battle', element: <Battle />},
       {path: '*', element: <PageNotFound />},
     ]
   }
