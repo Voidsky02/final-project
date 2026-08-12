@@ -17,6 +17,11 @@ function useRandomHero() {
                     throw new Error(`${response.status} Failed to fetch Hero from server`)
                 };
                 const hero = await response.json();
+                //! DELETE LATER
+                console.log(`BACKEND HERO = ${hero}`);
+                if (hero === null) {
+                    throw new Error(`${response.status} Failed to fetch Hero from server`)
+                };
                 setRandomHero(hero);
             } catch (error) {
                 console.error(error);
