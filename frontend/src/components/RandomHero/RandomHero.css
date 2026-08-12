@@ -1,8 +1,11 @@
 /* Main page layout */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 .hero__container {
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px; /*! for page layout spacing (could be less?)*/
+    
 }
 
 /* Left side styles */
@@ -20,11 +23,13 @@
 /* Hero name */
 .hero__name {
     margin: 0 0 20px 0; /*! For now */
+    font-family: "Bebas Neue", sans-serif;
 }
 
 /* Hero stat information */
 .hero__section-title { /*! Generic name for all section titles */
     margin: 0;
+    font-family: "Bebas Neue", sans-serif;
 }
 
 .stats__title {}

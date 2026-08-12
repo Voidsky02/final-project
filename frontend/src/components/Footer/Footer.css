@@ -1,6 +1,7 @@
 .footer {
     width: 100%;
     background-color: blue; /*! TEMP */
+    padding: 15px;
 }
 
 .footer__title {
