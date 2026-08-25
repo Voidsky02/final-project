@@ -12,6 +12,10 @@ function useRandomHero() {
             try {
                 setIsLoading(true);
                 setError(null);
+                //! THIS IS THE ONLY PART THAT NEEDS CHANGING,
+                //! INSTEAD OF A BACKEND EXPRESS REQUEST I WILL HAVE IT 
+                //! CALL THE METHOD IN THE NEW heroApi.js FILE IN THE
+                //! FRONTEND api FOLDER...
                 const response = await fetch('http://localhost:5000/');
                 if (!response.ok) {
                     throw new Error(`${response.status} Failed to fetch Hero from server`)

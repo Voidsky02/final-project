@@ -16,6 +16,7 @@ async function returnRandomHero(req, res, next) {
     } catch(error) {
         //! need error handling functions - replace later
         console.error(`Failed to return random hero: ${error}`);
+        return res.status(404).send(error);
     }
 };
 

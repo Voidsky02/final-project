@@ -20,13 +20,12 @@ function RandomHero() {
         return (
             <div className="loading-container">
                 <h2>Fetching Hero...</h2>
-                //! Add spinner
             </div>
         );
     }
     //! this returns if component has an error
     if (error) {
-        refetch();
+        // refetch();
         return (
             <div className="error-container">
                 <h2>Error fetching hero...</h2>

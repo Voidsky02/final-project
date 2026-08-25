@@ -25,27 +25,18 @@ async function fetchAllHeroData() {
 // Fetch random hero from API
 async function fetchRandomHero() {
     try {
-        // Generates random number between 1 & 731, which are the lowest
-        // and highest ID's of the superheros in the API.
-        //! This is hardcoded which is probably not good in case API is
-        //! altered
-        // 
-        // ! Gaps in Hero ID's in API - possible fix:
-        //! If returned hero is 404 - generate new number and try again
-        //! Until successful
-        const randomNumber = Math.floor(Math.random() * 731) + 1;
+        const apiResponse = await axios.get(`${baseUrl}/all.json`)
+        const allHeroesData = apiResponse.data; // extract actual data
 
+        const randomNumber = Math.floor(Math.random() * allHeroesData.length);
 
-        const apiResponse = await axios.get(`${baseUrl}/id/${randomNumber}.json`)
-        const randomHero = apiResponse.data;
+        const randomHero = allHeroesData[randomNumber];
 
         // Throw error if hero data fetched is not whats expected
         if (typeof randomHero !== "object") {
             throw new Error(`Hero returned is not valid data type`);
         }
 
-        //! Testing log - Delete later
-        // console.log(`RANDOM HERO SELECTED: ${JSON.stringify(randomHero)}`); //! Delete later - testing
         return randomHero;
 
     } catch (error) {
