@@ -7,7 +7,11 @@ async function fetchRandomHero() {
         const apiResponse = await fetch(`${baseUrl}/all.json`);
         //! AXIOS AUTOMATICALLY PARSES THE DATA - NOW THAT IM USING FETCH,
         //! I HAVE TO PARSE IT MYSELF WITH AN EXTRA STEP
-        const allHeroesData = apiResponse.data; // extract actual data
+        const allHeroesData = await apiResponse.json();
+
+        if (allHeroesData === null || allHeroesData === undefined) {
+            throw new Error(`404`);
+        }
 
         const randomNumber = Math.floor(Math.random() * allHeroesData.length);
 

@@ -1,5 +1,6 @@
 // Connect backend fetchRandomHero logic to the frontend here
 import { useState, useEffect } from 'react';
+import fetchRandomHero from '../api/heroApi';
 
 function useRandomHero() {
     // State Variables
@@ -12,24 +13,19 @@ function useRandomHero() {
             try {
                 setIsLoading(true);
                 setError(null);
-                //! THIS IS THE ONLY PART THAT NEEDS CHANGING,
-                //! INSTEAD OF A BACKEND EXPRESS REQUEST I WILL HAVE IT 
-                //! CALL THE METHOD IN THE NEW heroApi.js FILE IN THE
-                //! FRONTEND api FOLDER...
-                const response = await fetch('http://localhost:5000/');
-                if (!response.ok) {
-                    throw new Error(`${response.status} Failed to fetch Hero from server`)
-                };
-                const hero = await response.json();
-                //! DELETE LATER
-                console.log(`BACKEND HERO = ${hero}`);
+
+                const hero = await fetchRandomHero();
+
                 if (hero === null) {
-                    throw new Error(`${response.status} Failed to fetch Hero from server`)
+                    throw new Error(`404: Failed to fetch Hero from server`);
                 };
+
                 setRandomHero(hero);
+
             } catch (error) {
                 console.error(error);
                 setError(error);
+
             } finally {
                 setIsLoading(false);
             }

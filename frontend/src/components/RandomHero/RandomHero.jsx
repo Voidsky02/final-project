@@ -25,7 +25,6 @@ function RandomHero() {
     }
     //! this returns if component has an error
     if (error) {
-        // refetch();
         return (
             <div className="error-container">
                 <h2>Error fetching hero...</h2>
