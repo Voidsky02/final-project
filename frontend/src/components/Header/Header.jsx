@@ -1,47 +1,32 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
+import logo from "../../../public/stars.svg";
 
-//! Need cleaning up.
-function Header({ isLoggedIn, currentUser, openModal, closeModal, logout }) { // Changed layout depending on wether user is signed in or not.
-    // useState variables
+function Header({ isLoggedIn, currentUser, openModal, logout }) { // Changed layout depending on wether user is signed in or not.
 
-    // useEffect
-
-    // jsx aka html
-
-    /*
-    Tutorial for what to do next:
-    https://www.youtube.com/watch?v=c02YoWR9gSY
-
-    (createBrowserRouter + RouterProvider are modern versions of BrowserRouter)
-    */
     return (
         <header className='header'>
-            <p className="header__image" >LOGO</p> {/*! Placeholder */}
+            <Link className="header__link" to="/">
+                <img className='header__logo' src={logo} alt='website-logo' />
+            </Link>
             <nav className='header__nav'>
                 <ul className="header__list">
-                    <li className="header__item">
-                        <Link className="header__link" to="/">Home</Link>                        
-                    </li>
                     {/* Below is going to conditionally render elements*/}
                     {isLoggedIn ? (
                         <>
-                            {/*! Avatar somewhere and when clicked also goes to profile?
-                            Username should be displayed too*/}
                             <li className="header__item">
                                 <Link className="header__link" to="/profile">
-                                    {/* avatar if it exists, first letter of username if it doesnt */}
-                                    {currentUser.avatar ? (<img className='header__avatar' src={currentUser.avatar} alt="profile picture" />) : (<div className="header__avatar">{currentUser.username[0]}</div>)}
+                                    {/* avatar if it exists, first letter of username if it doesn't */}
+                                    {currentUser.avatar ? (<img className='header__avatar' src={currentUser.avatar} alt="users profile picture" />) : (<div className="header__avatar">{currentUser.username[0]}</div>)}
                                 </Link>                        
                             </li>
                             <li className="header__item" >
-                                <button onClick={() => openModal('edit')}>
+                                <button className='header__button' onClick={() => openModal('edit')}>
                                     Edit
                                 </button>
                             </li>
                             <li className="header__item" >
-                                <button className="" onClick={logout}>
+                                <button className='header__button' onClick={logout}>
                                     Sign out
                                 </button>
                             </li>
@@ -49,12 +34,12 @@ function Header({ isLoggedIn, currentUser, openModal, closeModal, logout }) { //
                         ) : (
                         <>
                             <li className="header__item" >
-                                <button className="" onClick={() => openModal("login")}>
+                                <button className='header__button' onClick={() => openModal("login")}>
                                     Sign in
                                 </button>
                             </li>
                             <li className="header__item" >
-                                <button className="" onClick={() => openModal("register")} >
+                                <button className='header__button' onClick={() => openModal("register")} >
                                     Sign up
                                 </button>
                             </li>

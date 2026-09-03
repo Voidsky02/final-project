@@ -11,7 +11,7 @@
 }
 
 :root {
-  font-family: "Sora", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Sora", Avenir, Helvetica, Arial, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -40,6 +40,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 h1 {

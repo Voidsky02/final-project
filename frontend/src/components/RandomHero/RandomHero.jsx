@@ -1,21 +1,11 @@
-import { useState, useEffect } from 'react';
 import './RandomHero.css';
 import useRandomHero from '../../hooks/useRandomHero.js';
 
 function RandomHero() {
     // extract variables from useRandomHero custom hook
     const { randomHero, refetch, isLoading, error } = useRandomHero();
-    
-    // Extract relevant fields from randomHero object for easier use
-    // if (randomHero) {
-    //     const {name, appearance, biography, images } = randomHero;
-    // }
 
-    // useEffect (what to do on first render)
-
-    // return the react component (html basically)
-
-    //! this returns if component isloading
+    // this returns if component isloading
     if (isLoading) {
         return (
             <div className="loading-container">
@@ -23,7 +13,7 @@ function RandomHero() {
             </div>
         );
     }
-    //! this returns if component has an error
+    // this returns if component has an error
     if (error) {
         return (
             <div className="error-container">
@@ -32,10 +22,10 @@ function RandomHero() {
             </div>
         );
     }
-    //! this returns is everything worked
+    
+    // this returns if everything worked
     return (
-        <div className="hero__container">
-            {/* randomHero, refetch, isLoading, error */}
+        <section className="hero__container">
             <div className="hero__container_left-column">
                 <h1 className="hero__name">{randomHero.name}</h1>
                 <div className="hero__stats">
@@ -64,9 +54,9 @@ function RandomHero() {
                 </div>  
             </div> 
             <div className="hero__container_right-column">
-                <img className="hero__image" src={randomHero.images.lg} />
+                <img className="hero__image" src={randomHero.images.lg} alt={`image of ${randomHero.name}`} />
             </div>            
-        </div>
+        </section>
     );
 }
 

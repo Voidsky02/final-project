@@ -5,8 +5,7 @@ const baseUrl = 'https://akabab.github.io/superhero-api/api';
 async function fetchRandomHero() {
     try {
         const apiResponse = await fetch(`${baseUrl}/all.json`);
-        //! AXIOS AUTOMATICALLY PARSES THE DATA - NOW THAT IM USING FETCH,
-        //! I HAVE TO PARSE IT MYSELF WITH AN EXTRA STEP
+        
         const allHeroesData = await apiResponse.json();
 
         if (allHeroesData === null || allHeroesData === undefined) {

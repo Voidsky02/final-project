@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
 import "./Footer.css";
 
 function Footer() {
-    return <>
+    return (
         <footer className="footer">
-            <h3 className="footer__title">Footer</h3>
+            <p className="footer__title">2026</p>
         </footer>
-    </>
+    )
 }
 
 export default Footer;

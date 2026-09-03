@@ -10,7 +10,7 @@ function useModal() {
     }
 
     function closeModal() {
-        // Set it back to nuetral state.
+        // Set it back to neutral state.
     setActiveModal("");
     }
 

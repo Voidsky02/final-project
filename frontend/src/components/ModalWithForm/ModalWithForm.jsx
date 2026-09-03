@@ -11,7 +11,7 @@ function ModalWithForm({
     handleSubmit,
 }) {
     return (
-        <div className={`modal ${isOpen && "modal__opened"}`} onClick={handleOffModalClick}>
+        <div className={`modal ${isOpen && "modal_opened"}`} onClick={handleOffModalClick}>
             <div className='modal__container'>
                 <button className='modal__close-button' type='button' onClick={closeModal}>                    
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">

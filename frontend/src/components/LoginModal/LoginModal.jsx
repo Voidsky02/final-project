@@ -8,7 +8,6 @@ function LoginModal({ isOpen, closeModal, handleOffModalClick, login }) {
 
     async function handleLogin(e) {
         try {
-            //! Add is loading state ??
             // Prevent refresh on submit.
             e.preventDefault();
 
@@ -22,8 +21,8 @@ function LoginModal({ isOpen, closeModal, handleOffModalClick, login }) {
             closeModal();
 
         } catch(error) {
-            console.error(`This is the login modal: ${error}`); //! Add more later.
-            window.alert('Login Failed'); //! TEMP
+            console.error(`This is the login modal: ${error}`); 
+            window.alert(`Login failed: ${error}`); 
         }
     }
 
@@ -32,7 +31,6 @@ function LoginModal({ isOpen, closeModal, handleOffModalClick, login }) {
             title={"Login Form"}
             name={"login"}
             buttonText={"Submit"}
-            // Below were recieved as props from parent -> <Layout> 
             isOpen={isOpen}
             closeModal={closeModal}
             handleOffModalClick={handleOffModalClick}
@@ -41,13 +39,13 @@ function LoginModal({ isOpen, closeModal, handleOffModalClick, login }) {
         >
             {/* Form fields, labels & inputs. */}
             <div className='login__form-field'>
-                <label className='login__label' htmlFor="email" >
+                <label className='login__label' htmlFor="login-email" >
                     Email
                 </label>
                 <input
                     className='login__input'
-                    type="string"
-                    id="email"
+                    type="email"
+                    id="login-email"
                     name="email"
                     value={values.email}
                     onChange={handleChange}
@@ -56,13 +54,13 @@ function LoginModal({ isOpen, closeModal, handleOffModalClick, login }) {
                 />
             </div>
             <div className='login__form-field'>
-                <label className='login__label' htmlFor="password">
+                <label className='login__label' htmlFor="login-password">
                     Password
                 </label>
                 <input
                     className='login__input'
-                    type="string"
-                    id="password"
+                    type="password"
+                    id="login-password"
                     name="password"
                     value={values.password}
                     onChange={handleChange}

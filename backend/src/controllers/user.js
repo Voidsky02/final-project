@@ -3,11 +3,10 @@ import User from '../models/user.js';
 import bcryptjs from 'bcryptjs'; // Hash password for storage.
 import { generateAccessToken } from '../utils/tokenServices.js';
 
-//! Need to align the user fields across my files, they are mismatched everywhere, specifically with the avatar field
-async function createUser(req, res, next) { //! I think this was just boilerplate code
+async function createUser(req, res, next) {
     try {
-        // Extract new user values from the request. //!MUST ADD AVATAR FIELD
-        const { username, avatar, email, password } = req.body; //! When do i compare password to confirmPassword? ALSO need avatar field
+        // Extract new user values from the request. 
+        const { username, avatar, email, password } = req.body;
 
         // Check to see if user already exists in the database.
         const alreadyExists = await User.findOne({ email: email });
@@ -17,7 +16,6 @@ async function createUser(req, res, next) { //! I think this was just boilerplat
 
         // Hash the password in prep for database storing.
         const hash = await bcryptjs.hash(password, 10);
-        console.log(username, avatar, email, hash);
 
         // Add the user to the database (mongoose will respond with a generated _id).
         const newUserDocument = await User.create({
@@ -31,8 +29,8 @@ async function createUser(req, res, next) { //! I think this was just boilerplat
         const newUserObject = newUserDocument.toJSON();
         delete newUserObject.password;
 
-        console.log(`This is the newUserObject in createUser (should have an _id field for generateAccessToken to use): ${JSON.stringify(newUserObject)}`)
-        //! Create json web token
+        
+        // Create json web token
         const accessToken = generateAccessToken(newUserObject); 
         
         // Successful response.
@@ -47,24 +45,16 @@ async function createUser(req, res, next) { //! I think this was just boilerplat
 
 // Update users profile information.
 async function updateUser(req, res, next) {
-    console.log('WE MADE IT TO UPDATE USER!!');
-    console.log(`This is the user object in updateUser:${req.user}`);
     try {
-        //! THINK I FOUND THE ISSUE, req.body now only holds the ID, not the username and avatar, right or wrong?
         // Extract values - only username and avatar for now
-        const { username, avatar } = req.body; //! What is the structure of req.body, and does
+        const { username, avatar } = req.body;
 
-        //! User the users ID to authorize the change, cause other fields might not be in the request (for example if the user wants to change only the avatar then the username field wont exist and therefore cant be used to search for the user in the DB).
         // See if the user exists in the database, and if so, update info.
-        //! _ID IS NOT SEND FROM EDITPROFILEMODAL, MUST CHANGE
         const updatedUserDocument = await User.findOneAndUpdate({ _id: req.user.user }, { $set: { username: username, avatar: avatar }}, { returnDocument: 'after' } );
 
         // Convert document to JSON object and delete password field.
         const updatedUserObject = updatedUserDocument.toJSON();
         delete updatedUserObject.password;
-
-        //! TODO - DELETE LATER
-        console.log(updatedUserObject);
 
         // Successful response.
         return res.status(200).json({
@@ -74,7 +64,6 @@ async function updateUser(req, res, next) {
     } catch(error) {
         console.error(error);
     }
-    console.log(`SUCCESSFULLY UPDATED USER - BACKEND`);
 }
 
 async function backendLogin(req, res, next) {
@@ -85,7 +74,7 @@ async function backendLogin(req, res, next) {
             return res.status(400).json({ message: 'Email and password are required.' });
         }
 
-        // #2 Find user in the DB. //!THIS IS WHERE THE FRONT END GETS THE USER INFO FROM - NOT FORM !!!!!
+        // #2 Find user in the DB. 
         const userDocument = await User.findOne({ email: email }).select('+password');
         if (!userDocument) {
             return res.status(401).json({ message: 'Invalid email or password.' });
@@ -100,23 +89,17 @@ async function backendLogin(req, res, next) {
 
         // Transform mongo user document to json object & delete password field.
         const user = userDocument.toJSON();
-        delete user.password; //! Will this work? Dont want frontend getting the password.
+        delete user.password; 
 
         // #5 Create token with users mongoose id (actually chose to do whole object just without the password ?).
         const accessToken = generateAccessToken(user);
 
-        //! TEMP
-        console.log(`Backend successfully logged in`);
-
-        //! #4 SEND TOKEN TO FRONTEND HOOK - JOB IS DONE.
-        //! SEND CLEANED UP USER INFO (NO PASSWORD) TO FRONTEND IN ADDITION TO THE TOKEN !!!
+        // SEND CLEANED UP USER INFO (NO PASSWORD) TO FRONTEND IN ADDITION TO THE TOKEN
         return res.status(200).json({ user: user, token: accessToken });
 
     } catch(error) {
-        console.error(`This is the user controller: ${error}`); //! Basic for now.
+        console.error(`This is the user controller: ${error}`); 
     }
 }
-
-//! Something to check if a user already exists in DB - will be used in auth.js?
 
 export { createUser, backendLogin, updateUser };

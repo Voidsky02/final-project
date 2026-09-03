@@ -3,30 +3,29 @@
 .hero__container {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px; /*! for page layout spacing (could be less?)*/
+    margin-bottom: 30px;
     
 }
 
 /* Left side styles */
 .hero__container_left-column {
-    display: flex; /*! Is this necessary? */
+    display: flex; 
     flex-direction: column;
-    /* align-items: center; */
     text-align: left;
-    padding-left: 20px; /*! Keep this only if it looks better (I think it does) */
+    padding-left: 20px;
     max-width: 600px;
 }
 
 /* Hero name */
 .hero__name {
-    margin: 0 0 20px 0; /*! For now */
-    font-family: "Chau", sans-serif;
+    margin: 0 0 20px 0; 
+    font-family: "Chau", Avenir, Helvetica, Arial, system-ui, sans-serif;
 }
 
 /* Hero stat information */
-.hero__section-title { /*! Generic name for all section titles */
+.hero__section-title { 
     margin: 0;
-    font-family: "Chau", sans-serif;
+    font-family: "Chau", Avenir, Helvetica, Arial, system-ui, sans-serif;
     width: 50%;
     padding: 10px;
     background: linear-gradient(to right, black, #242424);
@@ -48,7 +47,24 @@
 /* Right side styles */
 
 .hero__image {
+    max-width: 100%;
     border: 5px solid rgba(191, 187, 187, 1);
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.95);
 }
 
+/* Responsive styles */
+
+@media (max-width: 650px) {
+    .hero__container {
+        flex-direction: column-reverse;
+    }
+
+    .hero__name {
+        font-size: 50px;
+    }
+
+    .hero__image {
+        max-width: 80%;
+        margin-bottom: 30px;
+    }
+}

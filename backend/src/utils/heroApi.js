@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-/*
-Api calls will go here - One call to fetch all heroes and information. 
-I will then store them in the db maybe, and do all my creating there.
-*/
-
 const baseUrl = 'https://akabab.github.io/superhero-api/api';
 
 // Fetch every hero from api
@@ -18,7 +13,7 @@ async function fetchAllHeroData() {
 
     } catch (error) {
         console.error(`Failure to fetch all heroes: ${error}`);
-        return []; //! maybe should be more extreme
+        return []; 
     }
 }
 

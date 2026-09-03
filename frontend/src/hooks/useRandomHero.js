@@ -4,7 +4,7 @@ import fetchRandomHero from '../api/heroApi';
 
 function useRandomHero() {
     // State Variables
-    const [randomHero, setRandomHero] = useState(null);
+    const [randomHero, setRandomHero] = useState({});
     const [isLoading, setIsLoading] = useState(true); // Best practice to have.
     const [error, setError] = useState(null); // Best practice to have.
 
@@ -38,7 +38,7 @@ function useRandomHero() {
     }, []);
 
     // return the variables and manipulation functions in one object
-    return { randomHero, isLoading, error, refetch: fetchHero}; //! Need to re-run function if randomHero = 404 - Maybe do this in the component itself
+    return { randomHero, isLoading, error, refetch: fetchHero};
 
 }
 

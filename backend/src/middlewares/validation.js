@@ -1,15 +1,6 @@
 /* Joi & Celebrate validation for user password input */
 import Joi from 'joi';
 
-/*
-Joi = Schema for the data we expect to recieve
-Celebrate = Middleware that runs before controller, checks to see if
-input matches our Joi schema, if it does it lets it pass to the next step
-(the controller), if not it immediatley ends the request with the
-appropriate error message
-*/
-
-//! Need an avatar field - users model includes it.
 const celebrateRegisterSchema = Joi.object({
     username: Joi.string().alphanum().min(3).max(30).trim().required().messages({
         'any.required': 'Username field cannot be left blank',

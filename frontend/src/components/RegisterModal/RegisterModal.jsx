@@ -1,20 +1,16 @@
-import { useState, useEffect } from "react";
 import './RegisterModal.css';
 import axios from 'axios';
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import useForm from "../../hooks/useForm.js";
-//! Import useModal - All universal modal functionality ???
 
 // For Profile creation.
-
-//! Recieve useModal hook functions and variables as props from <Laytout />
 function RegisterModal({ isOpen, closeModal, handleOffModalClick, login }) {
 
-    const { values, handleChange, resetForm } = useForm({ username: "", avatar: "", email: "", password: "", confirmPassword: "" }); //! Add avatar field
+    const { values, handleChange, resetForm } = useForm({ username: "", avatar: "", email: "", password: "", confirmPassword: "" }); 
 
     // handleRegister is the only function created in the custom modal itself
     // because the submit logic is different depending on the modal
-    async function handleRegister(event) { //! Finish this function
+    async function handleRegister(event) { 
         try {
             // In previous project i just prevented default behavior,
             // then called a custom onSignUp function in here and thats it.
@@ -25,19 +21,14 @@ function RegisterModal({ isOpen, closeModal, handleOffModalClick, login }) {
             
             // Call createUser through an axios request.
             const response = await axios.post('http://localhost:5000/signup', { username: username, avatar: avatar, email: email, password: password, confirmPassword: confirmPassword });
-            const { user, token } = response.data; // User is the whole object, Token only includes the user._id in its payload.
-
-            //! TEMP
-            window.alert(`New User created Successfully!`);
+        
+            window.alert(`New User created Successfully! ${response}`);
 
             // Create object that matches what the login function expects.
             const loginData = { email: email, password: password };
 
             // Automatically log user in after creation.
             await login(loginData);
-
-            //! Temp
-            window.alert(`Automatic Login Successful!`);
 
             // Clear fields.
             resetForm();
@@ -46,39 +37,30 @@ function RegisterModal({ isOpen, closeModal, handleOffModalClick, login }) {
             closeModal();
 
         } catch (error) {
-            console.error(error) //! Make better later.
+            console.error(error) 
+            window.alert(`Failed to register new user: ${error}`);
         }
     }
-
-    //! handleRegister here, then pass to ModalWithForm's handleSubmit?
 
     return (
     <ModalWithForm
         title={"Registration Form"}
         name={"register"}
         buttonText={"Submit"}
-        //! Below are recieved as props
         isOpen={isOpen}
         closeModal={closeModal}
         handleOffModalClick={handleOffModalClick}
-        //! Below is created inside this component
         handleSubmit={handleRegister}
     >
-        {/* Form elements for creating a profile for first time
-        / (Username, Email, Password, confirm password)
-        /ther
-        / The name attribute is for form data submission and state management in React.
-        / htmlFor= and id= are what link the label and input together
-        / When the form is submitted, the browser packages the data using the name as the key. */}
 
         <div className="register__form-field">
-            <label className="register__label" htmlFor="username">
+            <label className="register__label" htmlFor="register-username">
                 Username
             </label>
             <input
                 className="register__input"
-                type="string"
-                id="username"
+                type="text"
+                id="register-username"
                 name="username"
                 value={values.username}
                 onChange={handleChange}
@@ -87,13 +69,13 @@ function RegisterModal({ isOpen, closeModal, handleOffModalClick, login }) {
             />
         </div>
         <div className="register__form-field">
-            <label className="register__label" htmlFor="avatar">
+            <label className="register__label" htmlFor="register-avatar">
                 Avatar
             </label>
             <input
                 className="register__input"
                 type="url"
-                id="avatar"
+                id="register-avatar"
                 name="avatar"
                 value={values.avatar}
                 onChange={handleChange}
@@ -102,13 +84,13 @@ function RegisterModal({ isOpen, closeModal, handleOffModalClick, login }) {
             />
         </div>
         <div className="register__form-field">
-            <label className="register__label" htmlFor="email">
+            <label className="register__label" htmlFor="register-email">
                 Email
             </label>
             <input
                 className="register__input"
                 type="email"
-                id="email"
+                id="register-email"
                 name="email"
                 value={values.email}
                 onChange={handleChange}
@@ -117,13 +99,13 @@ function RegisterModal({ isOpen, closeModal, handleOffModalClick, login }) {
             />
         </div>
         <div className="register__form-field">
-            <label className="register__label" htmlFor="password">
+            <label className="register__label" htmlFor="register-password">
                 Password
             </label>
             <input
                 className="register__input"
-                type="string"
-                id="password"
+                type="password"
+                id="register-password"
                 name="password"
                 value={values.password}
                 onChange={handleChange}
@@ -132,13 +114,13 @@ function RegisterModal({ isOpen, closeModal, handleOffModalClick, login }) {
             />
         </div>
         <div className="register__form-field">
-            <label className="register__label" htmlFor="confirmPassword">
+            <label className="register__label" htmlFor="register-confirmPassword">
                 Confirm Password
             </label>
             <input
                 className="register__input"
-                type="string"
-                id="confirmPassword"
+                type="password"
+                id="register-confirmPassword"
                 name="confirmPassword"
                 value={values.confirmPassword}
                 onChange={handleChange}
