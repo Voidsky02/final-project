@@ -17,26 +17,4 @@ async function fetchAllHeroData() {
     }
 }
 
-// Fetch random hero from API
-async function fetchRandomHero() {
-    try {
-        const apiResponse = await axios.get(`${baseUrl}/all.json`)
-        const allHeroesData = apiResponse.data; // extract actual data
-
-        const randomNumber = Math.floor(Math.random() * allHeroesData.length);
-
-        const randomHero = allHeroesData[randomNumber];
-
-        // Throw error if hero data fetched is not whats expected
-        if (typeof randomHero !== "object") {
-            throw new Error(`Hero returned is not valid data type`);
-        }
-
-        return randomHero;
-
-    } catch (error) {
-        console.error(`Failed to fetch random hero: ${error}`);
-    }
-}
-
-export { fetchAllHeroData, fetchRandomHero };
+export { fetchAllHeroData };

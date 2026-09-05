@@ -1,0 +1,25 @@
+10 min
+Project Submission and Assessment
+The project submission process is similar to what you used in Project 9. Here’s the workflow:
+
+Submission Workflow
+Make a pull request from your stage 1 branch into main.
+Copy the link and submit it on the project submission page.
+Your project will be reviewed within 24 hours using the assessment criteria below.
+Make your fixes and push the changes to the same branch.
+This process continues until the project is accepted.
+After it is accepted, you should merge the Stage 1 branch into main.
+💡 If you need a refresher on this topic, refer back to our chapter on Git branches.
+
+Assessment criteria
+The final project review is different from the other code reviews you have experienced so far. The criteria our instructors use are more demanding — but also allow for acceptance without all criteria being met: each point in the checklist is given a point value, and you need to get 80 points out of 100 to pass the stage.
+
+Here are the criteria for each type of project:
+
+Custom Project Stage 1 Criteria
+Custom Project Stage 2 and 3 Criteria
+News Explorer Criteria Stage 1
+News Explorer Criteria Stages 2 and 3
+Before submitting your work, make sure you go over the checklist and try to correct as many errors as possible by yourself. Very often, just by reviewing your own work, you can find a lot of easy-to-spot errors and bugs.
+
+The more requirements you meet, the higher your final grade. Following performance-related requirements can earn you quite a few more points. And the more points you earn, the closer your project is to the industry standard.
