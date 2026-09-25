@@ -9,6 +9,7 @@ import Layout from "./components/Layout/Layout.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import PageNotFound from './components/PageNotFound/PageNotFound.jsx';
 
+// Finalized.
 const router = createBrowserRouter([
   {
     element: <Layout />,
