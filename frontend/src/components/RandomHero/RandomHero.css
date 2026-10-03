@@ -1,0 +1,70 @@
+/* Main page layout */
+
+.hero__container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    
+}
+
+/* Left side styles */
+.hero__container_left-column {
+    display: flex; 
+    flex-direction: column;
+    text-align: left;
+    padding-left: 20px;
+    max-width: 600px;
+}
+
+/* Hero name */
+.hero__name {
+    margin: 0 0 20px 0; 
+    font-family: "Chau", Avenir, Helvetica, Arial, system-ui, sans-serif;
+}
+
+/* Hero stat information */
+.hero__section-title { 
+    margin: 0;
+    font-family: "Chau", Avenir, Helvetica, Arial, system-ui, sans-serif;
+    width: 50%;
+    padding: 10px;
+    background: linear-gradient(to right, black, #242424);
+    
+}
+
+.stats__list-item {
+    overflow-wrap: break-word;
+}
+
+.biography__list-item {
+    overflow-wrap: break-word;
+}
+
+.appearance__list-item {
+    overflow-wrap: break-word;
+}
+
+/* Right side styles */
+
+.hero__image {
+    max-width: 100%;
+    border: 5px solid rgba(191, 187, 187, 1);
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.95);
+}
+
+/* Responsive styles */
+
+@media (max-width: 650px) {
+    .hero__container {
+        flex-direction: column-reverse;
+    }
+
+    .hero__name {
+        font-size: 50px;
+    }
+
+    .hero__image {
+        max-width: 80%;
+        margin-bottom: 30px;
+    }
+}

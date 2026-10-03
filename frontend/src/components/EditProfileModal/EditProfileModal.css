@@ -1,0 +1,22 @@
+.edit__form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.edit__label {
+    align-self: flex-start;
+    color: black;
+    font-weight: 400;
+}
+
+.edit__input {
+    background-color: white;
+    color: black;
+    border: 3px solid black;
+    border-radius: 3px;
+}
+
+.edit__input:focus {
+    border-color: blue;
+}

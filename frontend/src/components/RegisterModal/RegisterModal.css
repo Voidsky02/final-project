@@ -1,0 +1,22 @@
+.register__form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.register__label {
+    align-self: flex-start;
+    color: black;
+    font-weight: 400;
+}
+
+.register__input {
+    background-color: white;
+    color: black;
+    border: 3px solid black;
+    border-radius: 3px;
+}
+
+.register__input:focus {
+    border-color: blue;
+}
